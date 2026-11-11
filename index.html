@@ -3,35 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lifebolt</title>
-<meta name="description" content="Life & work, in one place — jobs, dreams, leave and the dates that matter, synced across your devices.">
+<title>Lifebolt: life &amp; work, in one place</title>
+<meta name="description" content="Lifebolt: one list for work, home and the big dreams, with your calendar, annual leave, birthdays and renewals alongside. Free, no adverts.">
 <meta name="theme-color" content="#0b0b0f">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home">
 <header class="top"><div class="wrap">
-<a class="brand" href="index.html" aria-label="Lifebolt home"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="m"><polygon points="62,4 22,58 64,58"/></clipPath></defs><polygon points="36,42 78,42 38,96" fill="#FF375F"/><polygon points="62,4 22,58 64,58" fill="#0A84FF"/><polygon points="36,42 78,42 38,96" fill="#BF5AF2" clip-path="url(#m)"/></svg><span class="wordmark"><span class="a">life</span><span class="b">bolt</span></span></a>
-<nav class="links" aria-label="Site"><a href="index.html" aria-current="page">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="delete-account.html">Delete account</a></nav>
+<a class="brand" href="index.html" aria-label="Lifebolt home"><span class="wordmark"><span class="a">life</span><span class="b">bolt</span></span></a>
+<button class="bolt-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bm"><polygon points="62,4 22,58 64,58"/></clipPath></defs><polygon class="h-life" points="36,42 78,42 38,96" fill="#FF375F"/><polygon class="h-work" points="62,4 22,58 64,58" fill="#0A84FF"/><polygon class="h-mix" points="36,42 78,42 38,96" fill="#BF5AF2" clip-path="url(#bm)"/></svg></button>
 </div></header>
-<main><div class="wrap">
-<section class="hero">
-<img class="icon" src="icon.svg" alt="">
-<span class="wordmark" aria-label="Lifebolt"><span class="a">life</span><span class="b">bolt</span></span>
-<p class="tag">Life &amp; work, in one place</p>
-<p class="lead">One simple list for everything you juggle — work, home and the big dreams — with your leave, birthdays and renewals counting down beside it.</p>
-<div class="badges"><span class="badge">Coming soon to the App Store</span><span class="badge">Coming soon to Google Play</span></div>
-<p class="muted" style="font-size:15px">Free to use. No adverts.</p>
-</section>
-<div class="grid">
-<div class="card"><h3><span class="dot" style="background:var(--work)"></span>Jobs</h3><p>Add a job in seconds, pick its life area and when it's due. Repeating jobs add the next one for you when you tick them off.</p></div>
-<div class="card"><h3><span class="dot" style="background:var(--blend)"></span>Dreams</h3><p>Somewhere for the things you'd love to do one day — kept out of your to-do list until you come looking.</p></div>
-<div class="card"><h3><span class="dot" style="background:#5e5ce6"></span>Leave &amp; holidays</h3><p>Book time off and Lifebolt counts the days you actually work, so you always know how much leave is left.</p></div>
-<div class="card"><h3><span class="dot" style="background:var(--life)"></span>Life Clock</h3><p>Birthdays, renewals and anniversaries counting down — with a reminder job before the day comes round.</p></div>
-<div class="card"><h3><span class="dot" style="background:#30d158"></span>Your calendar, alongside</h3><p>On your phone, see your meetings next to your jobs. Calendar events stay on your phone and are never uploaded.</p></div>
-<div class="card"><h3><span class="dot" style="background:#ff9f0a"></span>Synced and private</h3><p>Sign in with Apple, Google or email and everything stays in step across your devices. Only you can see your data.</p></div>
+<nav id="menu" class="menu" aria-label="Site" hidden><div class="wrap">
+<a href="index.html" aria-current="page">Home</a>
+<a href="support.html">Help &amp; support</a>
+<a href="privacy.html">Privacy</a>
+<a href="delete-account.html">Delete your account</a>
+<p class="menu-note">Questions? <a href="mailto:support@lifebolt.app">support@lifebolt.app</a></p>
+</div></nav>
+<main>
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-copy">
+<h1>Life &amp; work, in one place</h1>
+<p class="lead">One list for everything you juggle: work, home, family and the big dreams. Your meetings sit beside your jobs, and your leave, birthdays and renewals count down on their own.</p>
+<div class="stores"><span class="store">Coming soon to the App Store</span><span class="store">Coming soon to Google Play</span></div>
+<p class="fine">Free. No adverts, no tracking.</p>
 </div>
-</div></main>
-<footer><div class="wrap"><span>© 2026 Lifebolt · Made in Scotland by Andy Prior</span><span><a href="privacy.html">Privacy</a> · <a href="support.html">Support</a> · <a href="mailto:support@lifebolt.app">support@lifebolt.app</a></span></div></footer>
+<figure class="phone phone-hero"><img src="img/jobs-list.webp" width="780" height="1688" alt="Lifebolt's Jobs list: today's meeting from the phone's calendar alongside jobs for work, home and health, then tomorrow's events and jobs."></figure>
+</div></section>
+
+<section class="feature" style="--c:#0A84FF"><div class="wrap feature-grid">
+<figure class="phone"><img src="img/jobs.webp" width="780" height="1688" loading="lazy" alt="Jobs overview: overdue, due today, left this week and done this week, with filters for each life area."></figure>
+<div class="feature-copy">
+<p class="kicker">Jobs</p>
+<h2>Add it in seconds, then forget about it</h2>
+<p>Type the job, pick its life area and when it's due: today, this week, next week or a date. Repeating jobs bring back the next one when you tick them off.</p>
+<p>Switch on calendar sync and your meetings appear between your jobs. Tap one to turn it into a job, like getting ready the day before. Calendar events stay on your phone and are never uploaded.</p>
+</div>
+</div></section>
+
+<section class="feature flip" style="--c:#FF375F"><div class="wrap feature-grid">
+<figure class="phone"><img src="img/clock.webp" width="780" height="1688" loading="lazy" alt="Life Clock: Sam's birthday in 8 days, a wedding anniversary in 23 days and the car MOT in 40 days."></figure>
+<div class="feature-copy">
+<p class="kicker">Life Clock</p>
+<h2>The dates that come round every year</h2>
+<p>Birthdays, anniversaries, renewals and MOTs, counted down soonest first. Lifebolt adds a reminder job a week before, so the card gets bought and the insurance gets renewed on time.</p>
+<p>Add UK or US public dates too, or keep it to just your own.</p>
+</div>
+</div></section>
+
+<section class="feature" style="--c:#30D158"><div class="wrap feature-grid">
+<figure class="phone"><img src="img/leave.webp" width="780" height="1688" loading="lazy" alt="Leave: 28 days allowance, 4 taken, 6.5 booked ahead and 17.5 left to book, with upcoming holidays listed."></figure>
+<div class="feature-copy">
+<p class="kicker">Leave</p>
+<h2>Always know how much holiday is left</h2>
+<p>Set your allowance, the days you work and when your leave year starts. Book holidays and days off, and Lifebolt counts only your working days, so the number left to book is always right.</p>
+</div>
+</div></section>
+
+<section class="feature flip" style="--c:#BF5AF2"><div class="wrap feature-grid">
+<figure class="phone"><img src="img/dreams.webp" width="780" height="1688" loading="lazy" alt="One of your dreams: Learn to sail, with buttons for Achieved it and Another one."></figure>
+<div class="feature-copy">
+<p class="kicker">Dreams</p>
+<h2>A home for the big things</h2>
+<p>The trip, the race, the new skill. Dreams stay out of your daily list until you want them. Tap Chase your dreams for a nudge, and mark one achieved when you do it.</p>
+</div>
+</div></section>
+
+<section class="closing"><div class="wrap">
+<h2>Yours, and only yours</h2>
+<p>Your account keeps everything in step across your phone and the web. Only you can see your data. You can export it or delete it from inside the app whenever you like.</p>
+<div class="stores"><span class="store">Coming soon to the App Store</span><span class="store">Coming soon to Google Play</span></div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Lifebolt. Made in Scotland by Andy Prior.</span><span class="foot-links"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="delete-account.html">Delete account</a><a href="mailto:support@lifebolt.app">support@lifebolt.app</a></span></div></footer>
+<script src="nav.js" defer></script>
 </body>
 </html>
