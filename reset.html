@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set a new password · Lifebolt</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0f">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+form { display:grid; gap:14px; } form[hidden] { display:none; }
+label { display:grid; gap:6px; font-size:15px; color:var(--muted); }
+input { font:inherit; color:var(--fg); background:#0f0f13; border:1px solid var(--line); border-radius:12px; padding:12px 14px; min-height:48px; }
+input:focus { outline:2px solid var(--work); outline-offset:1px; }
+button { font:inherit; font-weight:600; color:#fff; background:var(--work); border:0; border-radius:12px; min-height:48px; cursor:pointer; }
+button[disabled] { opacity:.5; cursor:default; }
+.msg { margin:0; } .msg.err { color:#ff6b6b; } .msg.ok { color:#30d158; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html" aria-label="Lifebolt home"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="m"><polygon points="62,4 22,58 64,58"/></clipPath></defs><polygon points="36,42 78,42 38,96" fill="#FF375F"/><polygon points="62,4 22,58 64,58" fill="#0A84FF"/><polygon points="36,42 78,42 38,96" fill="#BF5AF2" clip-path="url(#m)"/></svg><span class="wordmark"><span class="a">life</span><span class="b">bolt</span></span></a>
+<nav class="links" aria-label="Site"><a href="index.html">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>Set a new password</h1>
+<div class="card">
+<p id="status" class="msg">Checking your reset link…</p>
+<form id="form" hidden>
+<label>New password<input id="pw" type="password" autocomplete="new-password" minlength="8" required></label>
+<label>Type it again<input id="pw2" type="password" autocomplete="new-password" minlength="8" required></label>
+<button id="go" type="submit">Save new password</button>
+</form>
+</div>
+<p class="muted">Then go back to the Lifebolt app and sign in with your new password. Problems? Email <a href="mailto:support@lifebolt.app">support@lifebolt.app</a>.</p>
+</div></main>
+<footer><div class="wrap"><span>© 2026 Lifebolt · Made in Scotland by Andy Prior</span><span><a href="privacy.html">Privacy</a> · <a href="support.html">Support</a></span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+<script>
+(async () => {
+  const status = document.getElementById('status'), form = document.getElementById('form');
+  const say = (t, cls) => { status.textContent = t; status.className = 'msg' + (cls ? ' ' + cls : ''); };
+  const sb = supabase.createClient('https://jzueafhqgvpxndpdyxod.supabase.co', 'sb_publishable_Q0apDKs0V2ZU9IOBP4-Zfw_PBGF7G6X', { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
+  const q = new URLSearchParams(location.search);
+  const tokenHash = q.get('token_hash');
+  // Keep the one-time token out of the address bar and history.
+  history.replaceState(null, '', location.pathname);
+  if (!tokenHash) { say("This link isn't complete. Ask for a new reset email from the app (Forgot password?).", 'err'); return; }
+  const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type: 'recovery' });
+  if (error) { say('This reset link has expired or has already been used. Ask for a new one from the app (Forgot password?).', 'err'); return; }
+  say('Choose a new password (at least 8 characters).');
+  form.hidden = false; document.getElementById('pw').focus();
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const pw = document.getElementById('pw').value, pw2 = document.getElementById('pw2').value;
+    if (pw.length < 8) return say('Use at least 8 characters.', 'err');
+    if (pw !== pw2) return say("Those two passwords don't match.", 'err');
+    const btn = document.getElementById('go'); btn.disabled = true; btn.textContent = 'Saving…';
+    const { error } = await sb.auth.updateUser({ password: pw });
+    if (error) { btn.disabled = false; btn.textContent = 'Save new password'; return say(error.message || 'Something went wrong. Please try again.', 'err'); }
+    await sb.auth.signOut();
+    form.hidden = true; say('Done — your password has been changed. Go back to Lifebolt and sign in.', 'ok');
+  });
+})();
+</script>
+</body>
+</html>
